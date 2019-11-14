@@ -21,7 +21,7 @@ namespace FashionSales.Controllers
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {
-            return "value";
+            return "value11";
         }
 
         // POST api/values
