@@ -49,6 +49,18 @@ namespace FashionSales
             builder.AddRoleManager<RoleManager<Role>>();
             builder.AddSignInManager<SignInManager<User>>();
 
+
+
+
+
+
+
+
+
+
+
+         
+
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
