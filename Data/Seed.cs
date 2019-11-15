@@ -25,8 +25,8 @@ namespace FashionSales.Data
                 var roles = new List<Role>
                 {
                     new Role{Name = "Admin"},
-                    new Role{Name = "Student"},
-                    new Role{Name = "Instructor"},
+                    new Role{Name = "shop"},
+                    new Role{Name = "provider"},
                 };
 
                 foreach (var role in roles)
