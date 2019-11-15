@@ -76,12 +76,19 @@ namespace FashionSales
                        Newtonsoft.Json.ReferenceLoopHandling.Ignore;
                });
             services.AddCors();
-            //   services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
-            //          services.AddAutoMapper(typeof(Startup));
 
             services.AddTransient<Seed>();
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IUsersRepository, UsersRepository>();
+
+
+            services.AddScoped<ICategoriesRepository, CategoriesRepository>();
+            services.AddScoped<ICustomersRepository, CustomersRepository>();
+            services.AddScoped<IOrderProductsRepository, OrderProductsRepository>();
+            services.AddScoped<IOrdersRepository, OrdersRepository>();
+            services.AddScoped<IProductsRepository, ProductsRepository>();
+            services.AddScoped<IProvidersRepository, ProvidersRepository>();
+            services.AddScoped<ISubCategoriesRepository, SubCategoriesRepository>();
         }
 
 
