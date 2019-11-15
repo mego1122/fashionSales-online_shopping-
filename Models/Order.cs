@@ -9,7 +9,7 @@ namespace FashionSales.Models
     {
         public int Id { get; set; }
         public int CustomerId { get; set; }
-        public int ProviderId { get; set; }
+   
 
         public float TotalPrice { get; set; }
 
