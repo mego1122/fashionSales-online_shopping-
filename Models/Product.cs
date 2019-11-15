@@ -17,7 +17,7 @@ namespace FashionSales.Models
 
         public int Quantity { get; set; }
 
-        public int CategoryId { get; set; }
+        public int SubCategoryId { get; set; }
 
         [ForeignKey("Provider")]
         public int ProviderId { get; set; }
