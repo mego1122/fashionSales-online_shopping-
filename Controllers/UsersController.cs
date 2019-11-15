@@ -48,8 +48,8 @@ namespace FashionSales.Controllers
             return Ok(userToReturn);
         }
 
-        [HttpGet("{id}", Name = "GetInstructor")]
-        public async Task<IActionResult> GetInstructor(int id)
+        [HttpGet("{id}", Name = "Getprovider")]
+        public async Task<IActionResult> Getprovider(int id)
         {
 
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
@@ -92,21 +92,6 @@ namespace FashionSales.Controllers
 
         }
 
-        //[HttpPut("update/{username}")]
-        //public async Task<IActionResult> UpdateUser(string username, UserForUpdateDto userForUpdateDto)
-        //{
-        //    var user = await _userManager.FindByIdAsync(username);
-
-        //    try
-        //    {
-        //        result = await this._userManager.AddToRolesAsync(user, userForRegisterDto.Roles.Distinct());
-        //    }
-        //    catch
-        //    {
-        //        await DeleteUserAsync(user);
-        //        throw;
-        //    }
-        //}
 
     }
 }
