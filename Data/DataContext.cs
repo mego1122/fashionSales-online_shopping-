@@ -11,7 +11,16 @@ namespace FashionSales.Data
     {
         public DataContext(DbContextOptions<DataContext>  options) : base (options) {}
 
-    
+
+
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderProduct> OrderProducts { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Provider> Providers { get; set; }
+        public DbSet<SubCategory> SubCategories { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
