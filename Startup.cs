@@ -88,16 +88,22 @@ namespace FashionSales
                        Newtonsoft.Json.ReferenceLoopHandling.Ignore;
                });
             services.AddCors();
-            //   services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
-            //          services.AddAutoMapper(typeof(Startup));
 
             services.AddTransient<Seed>();
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IUsersRepository, UsersRepository>();
+
+
+            services.AddScoped<ICategoriesRepository, CategoriesRepository>();
+            services.AddScoped<ICustomersRepository, CustomersRepository>();
+            services.AddScoped<IOrderProductsRepository, OrderProductsRepository>();
+            services.AddScoped<IOrdersRepository, OrdersRepository>();
+            services.AddScoped<IProductsRepository, ProductsRepository>();
+            services.AddScoped<IProvidersRepository, ProvidersRepository>();
+            services.AddScoped<ISubCategoriesRepository, SubCategoriesRepository>();
         }
 
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, Seed seeder)
         {
             if (env.IsDevelopment())
