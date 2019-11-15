@@ -8,6 +8,7 @@ namespace FashionSales.Models
     public class Provider : User
     {
         public ICollection<Order> Orders { get; set; }
+        public ICollection<Product> Products { get; set; }
 
 
     }

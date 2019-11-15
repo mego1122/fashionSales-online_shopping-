@@ -9,12 +9,7 @@ namespace FashionSales.Models
 {
     public class OrderProduct
     {
-
         
-        
-    
-        public int Quantity { get; set; }
-
         [Key]
         [ForeignKey("Order")]
         public int OrderId { get; set; }
@@ -25,5 +20,8 @@ namespace FashionSales.Models
         public int ProductId { get; set; }
         public  Product Product { get; set; }
 
-}
+        public int Quantity { get; set; }
+
+
+    }
 }
