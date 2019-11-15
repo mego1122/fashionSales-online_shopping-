@@ -11,5 +11,7 @@ namespace FashionSales.Models
 
         public string Name { get; set; }
 
+
+
     }
 }
