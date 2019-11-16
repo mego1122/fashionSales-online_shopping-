@@ -17,7 +17,7 @@ namespace FashionSales.Data
 
         Order Get(int id);
 
-        Task<List<Order>> GetByName(string Name);
+        Task<List<Order>> GetByCustomerName(string Name);
 
         Task<List<Order>> Get();
     }
