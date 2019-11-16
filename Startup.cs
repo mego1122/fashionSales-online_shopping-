@@ -51,16 +51,6 @@ namespace FashionSales
 
 
 
-
-
-
-
-
-
-
-
-         
-
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
