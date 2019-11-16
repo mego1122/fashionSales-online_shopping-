@@ -20,7 +20,7 @@ namespace FashionSales.Models
         public int ProviderId { get; set; }
         public Provider Provider { get; set; }
 
-    
+
         public float TotalPrice { get; set; }
 
         public DateTime Date { get; set; }

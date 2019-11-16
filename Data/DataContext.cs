@@ -23,6 +23,8 @@ namespace FashionSales.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<OrderProduct>().HasKey(ba => new { ba.OrderId, ba.ProductId });
+
             base.OnModelCreating(builder);
 
             builder.Entity<UserRole>(userRole => 
