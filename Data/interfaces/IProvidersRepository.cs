@@ -9,11 +9,11 @@ namespace FashionSales.Data
     public interface IProvidersRepository
     {
 
-        Task<bool> Add(Provider category);
+        Task<bool> Add(Provider Provider);
 
-        Task<bool> Update(Provider category);
+        Task<bool> Update(Provider Provider);
 
-        Task<bool> Delete(Provider category);
+        Task<bool> Delete(Provider Provider);
 
         Provider Get(int id);
 
