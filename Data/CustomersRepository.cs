@@ -72,8 +72,8 @@ namespace FashionSales.Data
 
             try
             {
-                var categoryToUpdate = this.Get(Customer.Id);
-                categoryToUpdate.UserName = Customer.UserName;
+                var CustomerToUpdate = this.Get(Customer.Id);
+                CustomerToUpdate.UserName = Customer.UserName;
                 await _context.SaveChangesAsync();
                 return true;
             }
