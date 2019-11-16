@@ -17,6 +17,69 @@ namespace FashionSales.Data
         {
             _context = context;
         }
-       
+
+        public async Task<bool> Add(Order Order)
+        {
+            try
+            {
+                await _context.Orders.AddAsync(Order);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public async Task<bool> Delete(Order Order)
+        {
+            try
+            {
+                _context.Orders.Remove(Order);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public Order Get(int id)
+        {
+            return _context.Orders.FirstOrDefault(c => c.Id == id);
+        }
+
+        public async Task<List<Order>> Get()
+        {
+            return await _context.Orders.ToListAsync();
+        }
+
+
+
+        public async Task<List<Order>> GetByCustomerName(string Name)
+        {
+            return await _context.Orders.Where(c => c.Customer.UserName == Name).ToListAsync();
+        }
+
+
+
+        public async Task<bool> Update(Order Order)
+        {
+
+
+            try
+            {
+                var OrderToUpdate = this.Get(Order.Id);
+                OrderToUpdate.State = Order.State;
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

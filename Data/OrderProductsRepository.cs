@@ -17,6 +17,65 @@ namespace FashionSales.Data
         {
             _context = context;
         }
+
+        public async Task<bool> Add(OrderProduct OrderProduct)
+        {
+            try
+            {
+                await _context.OrderProducts.AddAsync(OrderProduct);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public async Task<bool> Delete(OrderProduct OrderProduct)
+        {
+            try
+            {
+                _context.OrderProducts.Remove(OrderProduct);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
        
+
+        public async Task<List<OrderProduct>> Get()
+        {
+            return await _context.OrderProducts.ToListAsync();
+        }
+
+        public OrderProduct Get(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<OrderProduct>> GetByName(string Name)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<bool> Update(OrderProduct OrderProduct)
+        {
+
+
+            try
+            {
+              
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

@@ -8,7 +8,17 @@ namespace FashionSales.Data
 {
     public interface ISubCategoriesRepository
     {
-        
-        
+        Task<bool> Add(SubCategory SubCategory);
+
+        Task<bool> Update(SubCategory SubCategory);
+
+        Task<bool> Delete(SubCategory SubCategory);
+
+        SubCategory Get(int id);
+
+        Task<List<SubCategory>> GetByName(string Name);
+
+        Task<List<SubCategory>> Get();
+
     }
 }
