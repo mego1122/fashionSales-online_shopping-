@@ -18,34 +18,69 @@ namespace FashionSales.Data
             _context = context;
         }
 
-        public Task<bool> Add(Customer Customer)
+
+        public async Task<bool> Add(Customer Customer)
         {
-            throw new NotImplementedException();
+            try
+            {
+                await _context.Customers.AddAsync(Customer);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
-        public Task<bool> Delete(Customer Customer)
+        public async Task<bool> Delete(Customer Customer)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _context.Customers.Remove(Customer);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public Customer Get(int id)
         {
-            throw new NotImplementedException();
+            return _context.Customers.FirstOrDefault(c => c.Id == id);
         }
 
-        public Task<List<Customer>> Get()
+        public async Task<List<Customer>> Get()
         {
-            throw new NotImplementedException();
+            return await _context.Customers.ToListAsync();
         }
 
-        public Task<List<Customer>> GetByName(string Name)
+
+
+        public async Task<List<Customer>> GetByName(string Name)
         {
-            throw new NotImplementedException();
+            return await _context.Customers.Where(c => c.UserName == Name).ToListAsync();
         }
 
-        public Task<bool> Update(Customer Customer)
+
+
+        public async Task<bool> Update(Customer Customer)
         {
-            throw new NotImplementedException();
+
+
+            try
+            {
+                var categoryToUpdate = this.Get(Customer.Id);
+                categoryToUpdate.UserName = Customer.UserName;
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }
