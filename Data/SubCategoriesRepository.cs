@@ -18,34 +18,67 @@ namespace FashionSales.Data
             _context = context;
         }
 
-        public Task<bool> Add(SubCategory category)
+        public async Task<bool> Add(SubCategory SubCategory)
         {
-            throw new NotImplementedException();
+            try
+            {
+                await _context.SubCategories.AddAsync(SubCategory);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
-        public Task<bool> Delete(SubCategory category)
+      
+
+        public async Task<bool> Delete(SubCategory SubCategory)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _context.SubCategories.Remove(SubCategory);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public SubCategory Get(int id)
         {
-            throw new NotImplementedException();
+            return _context.SubCategories.FirstOrDefault(c => c.Id == id);
         }
 
-        public Task<List<SubCategory>> Get()
+        public async Task<List<SubCategory>> Get()
         {
-            throw new NotImplementedException();
+            return await _context.SubCategories.ToListAsync();
         }
 
-        public Task<List<SubCategory>> GetByName(string Name)
+
+        public async Task<List<SubCategory>> GetByName(string Name)
         {
-            throw new NotImplementedException();
+            return await _context.SubCategories.Where(c => c.Name == Name).ToListAsync();
         }
 
-        public Task<bool> Update(SubCategory category)
+        public async Task<bool> Update(SubCategory SubCategory)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var SubcategoryToUpdate = this.Get(SubCategory.Id);
+                SubcategoryToUpdate.Name = SubCategory.Name;
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
+
+
     }
 }
