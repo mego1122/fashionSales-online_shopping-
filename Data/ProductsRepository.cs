@@ -18,34 +18,68 @@ namespace FashionSales.Data
             _context = context;
         }
 
-        public Task<bool> Add(Product Product)
+        public async Task<bool> Add(Product Product)
         {
-            throw new NotImplementedException();
+            try
+            {
+                await _context.Products.AddAsync(Product);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
-        public Task<bool> Delete(Product Product)
+        public async Task<bool> Delete(Product Product)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _context.Products.Remove(Product);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public Product Get(int id)
         {
-            throw new NotImplementedException();
+            return _context.Products.FirstOrDefault(c => c.Id == id);
         }
 
-        public Task<List<Product>> Get()
+        public async Task<List<Product>> Get()
         {
-            throw new NotImplementedException();
+            return await _context.Products.ToListAsync();
         }
 
-        public Task<List<Product>> GetByName(string Name)
+
+
+        public async Task<List<Product>> GetByName(string Name)
         {
-            throw new NotImplementedException();
+            return await _context.Products.Where(c => c.Name == Name).ToListAsync();
         }
 
-        public Task<bool> Update(Product Product)
+
+
+        public async Task<bool> Update(Product Product)
         {
-            throw new NotImplementedException();
+
+
+            try
+            {
+                var ProductToUpdate = this.Get(Product.Id);
+                ProductToUpdate.Name = Product.Name;
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }
