@@ -42,6 +42,9 @@ namespace FashionSales.Data
             
             });
 
+            builder.Entity<OrderProduct>()
+                .HasKey(c => new { c.ProductId, c.OrderId });
+
             builder.Entity<IdentityRole>().HasData(new IdentityRole { Name = "Admin", NormalizedName = "Admin".ToUpper() });
 
         }
