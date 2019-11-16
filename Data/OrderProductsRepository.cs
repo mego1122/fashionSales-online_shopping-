@@ -18,22 +18,42 @@ namespace FashionSales.Data
             _context = context;
         }
 
-        public Task<bool> Add(OrderProduct OrderProduct)
+        public async Task<bool> Add(OrderProduct OrderProduct)
         {
-            throw new NotImplementedException();
+            try
+            {
+                await _context.OrderProducts.AddAsync(OrderProduct);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
-        public Task<bool> Delete(OrderProduct OrderProduct)
+        public async Task<bool> Delete(OrderProduct OrderProduct)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _context.OrderProducts.Remove(OrderProduct);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+       
+
+        public async Task<List<OrderProduct>> Get()
+        {
+            return await _context.OrderProducts.ToListAsync();
         }
 
         public OrderProduct Get(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<List<OrderProduct>> Get()
         {
             throw new NotImplementedException();
         }
@@ -43,9 +63,19 @@ namespace FashionSales.Data
             throw new NotImplementedException();
         }
 
-        public Task<bool> Update(OrderProduct OrderProduct)
+        public async Task<bool> Update(OrderProduct OrderProduct)
         {
-            throw new NotImplementedException();
+
+
+            try
+            {
+              
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }
