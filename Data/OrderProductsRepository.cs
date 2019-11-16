@@ -17,6 +17,35 @@ namespace FashionSales.Data
         {
             _context = context;
         }
-       
+
+        public Task<bool> Add(OrderProduct OrderProduct)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> Delete(OrderProduct OrderProduct)
+        {
+            throw new NotImplementedException();
+        }
+
+        public OrderProduct Get(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<OrderProduct>> Get()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<OrderProduct>> GetByName(string Name)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> Update(OrderProduct OrderProduct)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

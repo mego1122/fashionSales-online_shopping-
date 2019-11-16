@@ -8,7 +8,17 @@ namespace FashionSales.Data
 {
     public interface IProductsRepository
     {
-        
-        
+
+        Task<bool> Add(Product Product);
+
+        Task<bool> Update(Product Product);
+
+        Task<bool> Delete(Product Product);
+
+        Product Get(int id);
+
+        Task<List<Product>> GetByName(string Name);
+
+        Task<List<Product>> Get();
     }
 }

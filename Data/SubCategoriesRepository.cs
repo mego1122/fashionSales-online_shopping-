@@ -17,6 +17,35 @@ namespace FashionSales.Data
         {
             _context = context;
         }
-       
+
+        public Task<bool> Add(SubCategory category)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> Delete(SubCategory category)
+        {
+            throw new NotImplementedException();
+        }
+
+        public SubCategory Get(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<SubCategory>> Get()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<SubCategory>> GetByName(string Name)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> Update(SubCategory category)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
