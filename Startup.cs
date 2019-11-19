@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using FashionSales.Data;
 using FashionSales.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -17,6 +18,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+
 namespace FashionSales
 {
     public class Startup
@@ -49,6 +51,7 @@ namespace FashionSales
             builder.AddRoleManager<RoleManager<Role>>();
             builder.AddSignInManager<SignInManager<User>>();
 
+            services.AddAutoMapper(typeof(Startup));
 
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
