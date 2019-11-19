@@ -20,6 +20,15 @@ namespace FashionSales.Models
         public string PhotoUrl { get; set; }
 
 
+
+        public int MobileNumber { get; set; }
+
+        public string Government { get; set; }
+
+
+
+
+
         public ICollection<UserRole> UserRoles { get; set; }
     }
 }
