@@ -11,11 +11,12 @@ namespace FashionSales.Models
     {
         [Key]
         public int Id { get; set; }
-
         public string Name { get; set; }
 
+        [ForeignKey("provider")]
+        public int ProviderId { get; set; }
 
+        public Provider provider { get; set; }
         public ICollection<SubCategory> SubCategories { get; set; }
-
     }
 }
