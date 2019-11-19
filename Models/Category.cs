@@ -13,10 +13,8 @@ namespace FashionSales.Models
         public int Id { get; set; }
         public string Name { get; set; }
 
-        [ForeignKey("provider")]
-        public int ProviderId { get; set; }
+        public ICollection<Provider_Category> Provider_Category { get; set; }
 
-        public Provider provider { get; set; }
-        public ICollection<SubCategory> SubCategories { get; set; }
+
     }
 }

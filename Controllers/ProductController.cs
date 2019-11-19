@@ -2,63 +2,61 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using FashionSales.Data;
 using FashionSales.Models;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FashionSales.Controllers
 {
-    //[Route("api/[controller]/[action]")]
-     [Route("api/[controller]")]
-
+    [Route("api/[controller]")]
     [ApiController]
-    public class CategoriesController : ControllerBase
-    {        
-    
-        private  ICategoriesRepository CategoriesRepository;
+    public class ProductController : ControllerBase
+    {
 
-        public CategoriesController(ICategoriesRepository _CategoryRepository)
+
+        private IProductsRepository ProductssRepository;
+
+        public ProductController(IProductsRepository _ProductssRepository)
         {
-            CategoriesRepository = _CategoryRepository;
+            ProductssRepository = _ProductssRepository;
         }
 
 
 
-        
         [HttpGet]
-        //[Route("GetCategories")]
-        public async Task<IActionResult> GetCategories()
+        [Route("GetProducts")]
+        public async Task<IActionResult> GetProduct()
         {
             try
             {
-                var categories = await CategoriesRepository.Get();
-                if (categories == null)
+                var products = await ProductssRepository.Get();
+                if (products == null)
                 {
                     return NotFound();
                 }
-                return Ok(categories);
+
+                return Ok(products);
             }
             catch (Exception)
             {
                 return BadRequest();
             }
+
         }
 
-
         [HttpPost]
-        //[Route("AddCategory")]
-        public async Task<IActionResult> PostCategory([FromBody]Category model)
+        [Route("AddProduct")]
+        public async Task<IActionResult> AddProduct([FromBody]Product model)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var categId = await CategoriesRepository.Add(model);
-                    if (categId == true)
+                    var prod = await ProductssRepository.Add(model);
+                    if (prod == true)
                     {
-                        return Ok(categId);
+                        return Ok(prod);
                     }
                     else
                     {
@@ -76,13 +74,13 @@ namespace FashionSales.Controllers
             return BadRequest();
         }
 
-        [HttpDelete]
-      //  [Route("DeleteCategory")]
-        public async Task<IActionResult> DeleteCategory(Category category)
+        [HttpPost]
+        [Route("DeleteProduct")]
+        public async Task<IActionResult> DeleteProduct(Product product)
         {
             bool result = false;
 
-            if (category == null)
+            if (product == null)
             {
                 // return BadRequest();
                 return NotFound();
@@ -90,7 +88,7 @@ namespace FashionSales.Controllers
 
             try
             {
-                result = await CategoriesRepository.Delete(category);
+                result = await ProductssRepository.Delete(product);
                 if (result == false)
                 {
                     return NotFound();
@@ -105,15 +103,15 @@ namespace FashionSales.Controllers
         }
 
 
-        [HttpPut]
-        [Route("UpdateCategory")]
-        public async Task<IActionResult> PutCategory([FromBody]Category model)
+        [HttpPost]
+        [Route("UpdateProduct")]
+        public async Task<IActionResult> UpdateProduct([FromBody]Product model)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    await CategoriesRepository.Update(model);
+                    await ProductssRepository.Update(model);
 
                     return Ok();
                 }
@@ -130,7 +128,6 @@ namespace FashionSales.Controllers
 
             return BadRequest();
         }
-
 
     }
 }

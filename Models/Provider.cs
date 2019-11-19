@@ -10,6 +10,10 @@ namespace FashionSales.Models
         public ICollection<Order> Orders { get; set; }
         public ICollection<Product> Products { get; set; }
 
+        public ICollection< Provider_Category> Provider_Category { get; set; }
+
+
+
 
     }
 }

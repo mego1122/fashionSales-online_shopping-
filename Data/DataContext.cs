@@ -18,12 +18,16 @@ namespace FashionSales.Data
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderProduct> OrderProducts { get; set; }
         public DbSet<Product> Products { get; set; }
+
+        public DbSet<Provider_Category> Provider_Categories { get; set; }
         public DbSet<Provider> Providers { get; set; }
-        public DbSet<SubCategory> SubCategories { get; set; }
+      
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<OrderProduct>().HasKey(ba => new { ba.OrderId, ba.ProductId });
+            builder.Entity<Provider_Category>().HasKey(ba => new { ba.CategoryId, ba.ProviderId });
+
 
             base.OnModelCreating(builder);
 
