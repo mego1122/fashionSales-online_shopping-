@@ -27,7 +27,8 @@ namespace FashionSales.Data
         {
             builder.Entity<OrderProduct>().HasKey(ba => new { ba.OrderId, ba.ProductId });
             builder.Entity<Provider_Category>().HasKey(ba => new { ba.CategoryId, ba.ProviderId });
-
+            builder.Entity<Provider_Category>().HasOne(b => b.provider).WithMany(c => c.Provider_Category).HasForeignKey(c => c.ProviderId);
+            builder.Entity<Provider_Category>().HasOne(b => b.Category).WithMany(c => c.Provider_Category).HasForeignKey(c => c.CategoryId);
 
             base.OnModelCreating(builder);
 

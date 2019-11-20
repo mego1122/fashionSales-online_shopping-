@@ -10,9 +10,8 @@ using FashionSales.Models;
 
 namespace FashionSales.Controllers
 {
-    //[Route("api/[controller]/[action]")]
-     [Route("api/[controller]")]
-
+    
+    [Route("api/[controller]")]
     [ApiController]
     public class CategoriesController : ControllerBase
     {        
@@ -47,9 +46,10 @@ namespace FashionSales.Controllers
         }
 
 
-        [HttpPost]
+        //[HttpPost]
+        [HttpPost("PostCategory")]
         //[Route("AddCategory")]
-        public async Task<IActionResult> PostCategory([FromBody]Category model)
+        public async Task<IActionResult> PostCategory(Category model)
         {
             if (ModelState.IsValid)
             {
@@ -76,7 +76,7 @@ namespace FashionSales.Controllers
             return BadRequest();
         }
 
-        [HttpDelete]
+        [HttpDelete("DeleteCategory")]
       //  [Route("DeleteCategory")]
         public async Task<IActionResult> DeleteCategory(Category category)
         {
@@ -105,8 +105,8 @@ namespace FashionSales.Controllers
         }
 
 
-        [HttpPut]
-        [Route("UpdateCategory")]
+        [HttpPut("PutCategory")]
+      //  [Route("UpdateCategory")]
         public async Task<IActionResult> PutCategory([FromBody]Category model)
         {
             if (ModelState.IsValid)
