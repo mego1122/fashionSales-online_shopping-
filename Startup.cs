@@ -90,7 +90,10 @@ namespace FashionSales
             services.AddScoped<IOrdersRepository, OrdersRepository>();
             services.AddScoped<IProductsRepository, ProductsRepository>();
             services.AddScoped<IProvidersRepository, ProvidersRepository>();
-            services.AddScoped<ISubCategoriesRepository, SubCategoriesRepository>();
+            
+
+
+          
         }
 
 
@@ -117,6 +120,9 @@ namespace FashionSales
 
             app.UseHttpsRedirection();
             app.UseMvc();
+
+
+           
         }
     }
 }

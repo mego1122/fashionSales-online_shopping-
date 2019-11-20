@@ -22,11 +22,15 @@ namespace FashionSales.Data
         {
             try
             {
-                await _context.Categories.AddAsync(category);
-                await _context.SaveChangesAsync();
+                if (_context != null)
+                {
+                    await _context.Categories.AddAsync(category);
+                    await _context.SaveChangesAsync();
+                }
+                 
                 return true;
             }
-            catch
+            catch 
             {
                 return false;
             }
@@ -46,6 +50,7 @@ namespace FashionSales.Data
             }
         }
 
+  
         public Category Get(int id)
         {
             return _context.Categories.FirstOrDefault(c => c.Id == id);
