@@ -19,6 +19,7 @@ namespace FashionSales.Data
         Task<List<Category>> GetByName(string Name);
 
         Task<List<Category>> Get();
+        Task<Category> Gett(int id);
 
     }
 }

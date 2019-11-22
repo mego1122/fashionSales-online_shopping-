@@ -45,9 +45,28 @@ namespace FashionSales.Controllers
             }
         }
 
+        [HttpGet("GetCategories")]
+        //[Route("GetCategories")]
+        public async Task<IActionResult> GetCategories(int id)
+        {
+            try
+            {
+                var category = await CategoriesRepository.Gett(id);
+                if (category == null)
+                {
+                    return NotFound();
+                }
+                return Ok(category);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
 
         //[HttpPost]
-        [HttpPost("PostCategory")]
+        [HttpPost]
         //[Route("AddCategory")]
         public async Task<IActionResult> PostCategory(Category model)
         {
@@ -76,12 +95,12 @@ namespace FashionSales.Controllers
             return BadRequest();
         }
 
-        [HttpDelete("DeleteCategory")]
+        [HttpDelete]
       //  [Route("DeleteCategory")]
-        public async Task<IActionResult> DeleteCategory(Category category)
+        public async Task<IActionResult> DeleteCategory([FromQuery] int  id)
         {
             bool result = false;
-
+            var category = CategoriesRepository.Get(id);
             if (category == null)
             {
                 // return BadRequest();
@@ -91,6 +110,7 @@ namespace FashionSales.Controllers
             try
             {
                 result = await CategoriesRepository.Delete(category);
+
                 if (result == false)
                 {
                     return NotFound();
@@ -105,7 +125,7 @@ namespace FashionSales.Controllers
         }
 
 
-        [HttpPut("PutCategory")]
+        [HttpPut]
       //  [Route("UpdateCategory")]
         public async Task<IActionResult> PutCategory([FromBody]Category model)
         {

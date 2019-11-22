@@ -53,8 +53,14 @@ namespace FashionSales.Data
   
         public Category Get(int id)
         {
-            return _context.Categories.FirstOrDefault(c => c.Id == id);
+            return _context.Categories.SingleOrDefault(c => c.Id == id);
         }
+
+        public async Task< Category> Gett(int id)
+        {
+            return await  _context.Categories.SingleOrDefaultAsync(c => c.Id == id);
+        }
+
 
         public async Task<List<Category>> Get()
         {
