@@ -25,7 +25,7 @@ namespace FashionSales.Data
                 var roles = new List<Role>
                 {
                     new Role{Name = "Admin"},
-                    new Role{Name = "shop"},
+                    new Role{Name = "customer"},
                     new Role{Name = "provider"},
                 };
 
