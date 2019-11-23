@@ -127,10 +127,10 @@ namespace FashionSales.Controllers
                 var roles = await _userManager.GetRolesAsync(user);
                 return Ok(new
                 {
-                    token = GenerateJwtToken(appUser).Result,
+                    access_token = GenerateJwtToken(appUser).Result,
                     user = userToReturn,
                     roles
-                });
+            });
             }
 
             return Unauthorized("wrongPassword");
