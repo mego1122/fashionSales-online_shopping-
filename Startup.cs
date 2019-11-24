@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using FashionSales.Data;
+using FashionSales.Data.interfaces;
 using FashionSales.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -17,6 +20,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+
 namespace FashionSales
 {
     public class Startup
@@ -43,12 +47,25 @@ namespace FashionSales
                 opt.Password.RequireUppercase = false;
             });
 
+
+
+            services.AddDistributedMemoryCache();
+            services.AddSession(options =>
+            {
+                // Set a short timeout for easy testing.
+                options.IdleTimeout = TimeSpan.FromSeconds(10);
+                options.Cookie.HttpOnly = true;
+                // Make the session cookie essential
+                options.Cookie.IsEssential = true;
+            });
+
             builder = new IdentityBuilder(builder.UserType, typeof(Role), builder.Services);
             builder.AddEntityFrameworkStores<DataContext>();
             builder.AddRoleValidator<RoleValidator<Role>>();
             builder.AddRoleManager<RoleManager<Role>>();
             builder.AddSignInManager<SignInManager<User>>();
 
+            services.AddAutoMapper(typeof(Startup));
 
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -89,11 +106,11 @@ namespace FashionSales
             services.AddScoped<IOrderProductsRepository, OrderProductsRepository>();
             services.AddScoped<IOrdersRepository, OrdersRepository>();
             services.AddScoped<IProductsRepository, ProductsRepository>();
-            services.AddScoped<IProvidersRepository, ProvidersRepository>();
-            
+            services.AddScoped<IProviderRepository, ProviderRepository>();
 
-
-          
+           services.AddScoped<IProviderCategoryRepository, ProviderCategoryRepository>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped<ProviderCategoryRepository>();
         }
 
 
@@ -115,14 +132,12 @@ namespace FashionSales
             app.UseAuthentication();
             app.UseDefaultFiles();
             app.UseStaticFiles();
+            app.UseSession();
             app.UseMvc();
-
-
+           
+            
             app.UseHttpsRedirection();
             app.UseMvc();
-
-
-           
         }
     }
 }

@@ -45,8 +45,6 @@ namespace FashionSales.Data
                     .WithMany(r => r.UserRoles)
                     .HasForeignKey(ur => ur.UserId)
                     .IsRequired();
-
-            
             });
 
             builder.Entity<OrderProduct>()

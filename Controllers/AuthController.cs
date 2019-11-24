@@ -15,6 +15,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.Linq;
+using Microsoft.AspNetCore.Http;
 
 namespace FashionSales.Controllers
 {
@@ -120,11 +121,15 @@ namespace FashionSales.Controllers
 
             if (result.Succeeded)
             {
+
+                 HttpContext.Session.SetInt32("user", user.Id);
+              
                 var appUser = await _userManager.Users
                     .FirstOrDefaultAsync(u => u.NormalizedUserName == userForLoginDto.Username.ToUpper());
 
                 var userToReturn = _mapper.Map<UserForListDto>(appUser);
                 var roles = await _userManager.GetRolesAsync(user);
+               
                 return Ok(new
                 {
                     access_token = GenerateJwtToken(appUser).Result,

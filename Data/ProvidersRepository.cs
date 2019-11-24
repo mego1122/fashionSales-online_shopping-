@@ -10,10 +10,10 @@ using Microsoft.VisualBasic;
 
 namespace FashionSales.Data
 {
-    public class ProvidersRepository : IProvidersRepository
+    public class ProviderRepository : IProviderRepository
     {
         private readonly DataContext _context;
-        public ProvidersRepository(DataContext context)
+        public ProviderRepository(DataContext context)
         {
             _context = context;
         }

@@ -6,7 +6,7 @@ using FashionSales.Models;
 
 namespace FashionSales.Data
 {
-    public interface IProvidersRepository
+    public interface IProviderRepository
     {
 
         Task<bool> Add(Provider Provider);

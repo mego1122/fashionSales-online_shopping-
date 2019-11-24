@@ -63,7 +63,7 @@ namespace FashionSales.Data
             throw new NotImplementedException();
         }
 
-        public async Task<bool> Update(OrderProduct OrderProduct)
+        public async  Task<bool> Update(OrderProduct OrderProduct)
         {
 
 
