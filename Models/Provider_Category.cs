@@ -9,6 +9,7 @@ namespace FashionSales.Models
     public class Provider_Category
     {
         [ForeignKey("provider")]
+
         public int  ProviderId { get; set; }
         [ForeignKey("Category")]
         public int  CategoryId { get; set; }

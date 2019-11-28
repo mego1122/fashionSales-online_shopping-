@@ -84,6 +84,9 @@ namespace FashionSales
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));
+                options.AddPolicy("RequireAdminRole", policy => policy.RequireRole("provider"));
+                options.AddPolicy("RequireAdminRole", policy => policy.RequireRole("customer"));
+
             });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);

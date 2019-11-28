@@ -30,6 +30,8 @@ namespace FashionSales.Models
 
         public ICollection<OrderProduct> OrderProducts { get; set; }
 
+        public ICollection<ProductExtraAdds> ProductExtraAdds { get; set; }
+
 
 
 

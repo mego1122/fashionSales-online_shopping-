@@ -7,6 +7,7 @@ using FashionSales.Models;
 using Microsoft.EntityFrameworkCore;
 using FashionSales.Data;
 using Microsoft.VisualBasic;
+using System.Security.Claims;
 
 namespace FashionSales.Data
 {
@@ -20,6 +21,7 @@ namespace FashionSales.Data
 
         public async Task<bool> Add(Product Product)
         {
+          
             try
             {
                 await _context.Products.AddAsync(Product);
@@ -46,24 +48,18 @@ namespace FashionSales.Data
             }
         }
 
-        public Product Get(int id)
-        {
-            return _context.Products.FirstOrDefault(c => c.Id == id);
-        }
+      
+      
 
         public async Task<List<Product>> Get()
         {
             return await _context.Products.ToListAsync();
         }
 
-
-
-        public async Task<List<Product>> GetByName(string Name)
+        public async Task<Product> Get(int id)
         {
-            return await _context.Products.Where(c => c.Name == Name).ToListAsync();
+           return await _context.Products.SingleOrDefaultAsync(a => a.Id == id); 
         }
-
-
 
         public async Task<bool> Update(Product Product)
         {
@@ -71,8 +67,7 @@ namespace FashionSales.Data
 
             try
             {
-                var ProductToUpdate = this.Get(Product.Id);
-                ProductToUpdate.Name = Product.Name;
+                 _context.Products.Update(Product);
                 await _context.SaveChangesAsync();
                 return true;
             }

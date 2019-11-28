@@ -19,6 +19,10 @@ namespace FashionSales.Data
         public DbSet<OrderProduct> OrderProducts { get; set; }
         public DbSet<Product> Products { get; set; }
 
+        public DbSet<ProductExtraAdds> ProductExtraAdds { get; set; }
+        public DbSet<ExtraAdds> ExtraAdds { get; set; }
+     
+
         public DbSet<Provider_Category> Provider_Categories { get; set; }
         public DbSet<Provider> Providers { get; set; }
       
@@ -27,8 +31,12 @@ namespace FashionSales.Data
         {
             builder.Entity<OrderProduct>().HasKey(ba => new { ba.OrderId, ba.ProductId });
             builder.Entity<Provider_Category>().HasKey(ba => new { ba.CategoryId, ba.ProviderId });
-            builder.Entity<Provider_Category>().HasOne(b => b.provider).WithMany(c => c.Provider_Category).HasForeignKey(c => c.ProviderId);
-            builder.Entity<Provider_Category>().HasOne(b => b.Category).WithMany(c => c.Provider_Category).HasForeignKey(c => c.CategoryId);
+            builder.Entity<ProductExtraAdds>().HasKey(ba => new { ba.ExtraAddId, ba.ProductId });
+
+            //builder.Entity<Provider_Category>().HasOne(b => b.provider).WithMany(c => c.Provider_Category).HasForeignKey(c => c.ProviderId);
+            //builder.Entity<Provider_Category>().HasOne(b => b.Category).WithMany(c => c.Provider_Category).HasForeignKey(c => c.CategoryId);
+
+
 
             base.OnModelCreating(builder);
 
@@ -47,8 +55,7 @@ namespace FashionSales.Data
                     .IsRequired();
             });
 
-            builder.Entity<OrderProduct>()
-                .HasKey(c => new { c.ProductId, c.OrderId });
+            builder.Entity<OrderProduct>().HasKey(c => new { c.ProductId, c.OrderId });
 
             builder.Entity<IdentityRole>().HasData(new IdentityRole { Name = "Admin", NormalizedName = "Admin".ToUpper() });
 

@@ -56,6 +56,7 @@ namespace FashionSales.Data
         {
             try
             {
+
                 _context.Provider_Categories.Remove(prvcat);
                 await _context.SaveChangesAsync();
                 return true;
