@@ -46,7 +46,12 @@ namespace FashionSales.Data
             }
         }
 
-        public Order Get(int id)
+        public async Task<Order> Getorder(int id)
+        {
+            return await _context.Orders.SingleOrDefaultAsync(c => c.Id == id);
+        }
+
+        public Order Getorderss(int id)
         {
             return _context.Orders.FirstOrDefault(c => c.Id == id);
         }
@@ -63,15 +68,23 @@ namespace FashionSales.Data
             return await _context.Orders.Where(c => c.Customer.UserName == Name).ToListAsync();
         }
 
+        //public Task<bool> Update(Order Order)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
 
 
         public async Task<bool> Update(Order Order)
         {
-
+            
 
             try
             {
-                var OrderToUpdate = this.Get(Order.Id);
+                var OrderToUpdate = this.Getorderss(Order.Id);
+                OrderToUpdate.CustomerId = Order.CustomerId;
+                OrderToUpdate.ProviderId = Order.ProviderId;
+                OrderToUpdate.TotalPrice = Order.TotalPrice;
                 OrderToUpdate.State = Order.State;
                 await _context.SaveChangesAsync();
                 return true;

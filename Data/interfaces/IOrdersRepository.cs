@@ -15,7 +15,7 @@ namespace FashionSales.Data
 
         Task<bool> Delete(Order Order);
 
-        Order Get(int id);
+        Task<Order> Getorder(int id);
 
         Task<List<Order>> GetByCustomerName(string Name);
 
