@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FashionSales.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20191128181358_sdsda")]
-    partial class sdsda
+    [Migration("20191206150924_third")]
+    partial class third
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -271,8 +271,8 @@ namespace FashionSales.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "9abd3b8c-4878-414f-bc16-775e5e90914f",
-                            ConcurrencyStamp = "b4969d83-f499-496c-bd93-c5a253414a2c",
+                            Id = "9df4e05b-a9b8-4d34-afef-b320f6b168c9",
+                            ConcurrencyStamp = "638639c1-c609-41da-8a51-b85fedfb066d",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });

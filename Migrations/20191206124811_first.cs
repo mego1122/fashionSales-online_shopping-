@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FashionSales.Migrations
 {
-    public partial class fffd : Migration
+    public partial class first : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -69,6 +69,20 @@ namespace FashionSales.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Categories", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ExtraAdds",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(nullable: true),
+                    Price = table.Column<float>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ExtraAdds", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -211,7 +225,7 @@ namespace FashionSales.Migrations
                         column: x => x.CustomerId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Orders_AspNetUsers_ProviderId",
                         column: x => x.ProviderId,
@@ -297,13 +311,37 @@ namespace FashionSales.Migrations
                         column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ProductExtraAdds",
+                columns: table => new
+                {
+                    ExtraAddId = table.Column<int>(nullable: false),
+                    ProductId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductExtraAdds", x => new { x.ExtraAddId, x.ProductId });
+                    table.ForeignKey(
+                        name: "FK_ProductExtraAdds_ExtraAdds_ExtraAddId",
+                        column: x => x.ExtraAddId,
+                        principalTable: "ExtraAdds",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ProductExtraAdds_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
                 table: "IdentityRole",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "7ac7911b-8cf9-4f59-bc57-642d6985cfb2", "6bc7e19a-9bbc-4dbc-88e0-2487334b3182", "Admin", "ADMIN" });
+                values: new object[] { "104a5022-8131-4874-a927-787fa09d3839", "7869611c-0106-44da-affc-6bf15b34234f", "Admin", "ADMIN" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -355,6 +393,11 @@ namespace FashionSales.Migrations
                 column: "ProviderId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ProductExtraAdds_ProductId",
+                table: "ProductExtraAdds",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Products_CategoryId",
                 table: "Products",
                 column: "CategoryId");
@@ -394,6 +437,9 @@ namespace FashionSales.Migrations
                 name: "OrderProducts");
 
             migrationBuilder.DropTable(
+                name: "ProductExtraAdds");
+
+            migrationBuilder.DropTable(
                 name: "Provider_Categories");
 
             migrationBuilder.DropTable(
@@ -401,6 +447,9 @@ namespace FashionSales.Migrations
 
             migrationBuilder.DropTable(
                 name: "Orders");
+
+            migrationBuilder.DropTable(
+                name: "ExtraAdds");
 
             migrationBuilder.DropTable(
                 name: "Products");

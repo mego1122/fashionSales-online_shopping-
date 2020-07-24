@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FashionSales.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20191119175523_fffd")]
-    partial class fffd
+    [Migration("20191206124811_first")]
+    partial class first
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -32,6 +32,21 @@ namespace FashionSales.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("FashionSales.Models.ExtraAdds", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name");
+
+                    b.Property<float>("Price");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ExtraAdds");
                 });
 
             modelBuilder.Entity("FashionSales.Models.Order", b =>
@@ -99,6 +114,19 @@ namespace FashionSales.Migrations
                     b.HasIndex("ProviderId");
 
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("FashionSales.Models.ProductExtraAdds", b =>
+                {
+                    b.Property<int>("ExtraAddId");
+
+                    b.Property<int>("ProductId");
+
+                    b.HasKey("ExtraAddId", "ProductId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductExtraAdds");
                 });
 
             modelBuilder.Entity("FashionSales.Models.Provider_Category", b =>
@@ -243,8 +271,8 @@ namespace FashionSales.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "7ac7911b-8cf9-4f59-bc57-642d6985cfb2",
-                            ConcurrencyStamp = "6bc7e19a-9bbc-4dbc-88e0-2487334b3182",
+                            Id = "104a5022-8131-4874-a927-787fa09d3839",
+                            ConcurrencyStamp = "7869611c-0106-44da-affc-6bf15b34234f",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -370,6 +398,19 @@ namespace FashionSales.Migrations
                     b.HasOne("FashionSales.Models.Provider", "Provider")
                         .WithMany("Products")
                         .HasForeignKey("ProviderId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("FashionSales.Models.ProductExtraAdds", b =>
+                {
+                    b.HasOne("FashionSales.Models.ExtraAdds", "ExtraAdds")
+                        .WithMany("ProductExtraAdds")
+                        .HasForeignKey("ExtraAddId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("FashionSales.Models.Product", "Product")
+                        .WithMany("ProductExtraAdds")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
