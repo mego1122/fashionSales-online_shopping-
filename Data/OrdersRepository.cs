@@ -62,6 +62,12 @@ namespace FashionSales.Data
         }
 
 
+        public async Task <List<Order>> GetorderByCustomer(int id)
+        {
+            return await _context.Orders.Where(c => c.CustomerId == id).ToListAsync();
+        }
+
+
 
         public async Task<List<Order>> GetByCustomerName(string Name)
         {

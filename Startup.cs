@@ -110,8 +110,9 @@ namespace FashionSales
             services.AddScoped<IOrdersRepository, OrdersRepository>();
             services.AddScoped<IProductsRepository, ProductsRepository>();
             services.AddScoped<IProviderRepository, ProviderRepository>();
+            services.AddScoped<ICartRepository, CartRepository>();
 
-           services.AddScoped<IProviderCategoryRepository, ProviderCategoryRepository>();
+            services.AddScoped<IProviderCategoryRepository, ProviderCategoryRepository>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<ProviderCategoryRepository>();
         }

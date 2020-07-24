@@ -43,6 +43,26 @@ namespace FashionSales.Controllers
 
 
         [HttpGet]
+        [Route("GetCustomerOrder")]
+        public async Task<IActionResult> GetCustomerOrder(int id)
+        {
+            try
+            {
+                var Ordrs = await OrdersRepository.GetorderByCustomer(id);
+                if (Ordrs == null)
+                {
+                    return NotFound();
+                }
+                return Ok(Ordrs);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+
+        [HttpGet]
         [Route("GetOrder")]
         public async Task<IActionResult> GetOrder(int id)
         {
@@ -111,9 +131,17 @@ namespace FashionSales.Controllers
 
 
 
+
+
+        
+
+
+
+
         [HttpPost]
         public async Task<IActionResult> AddOrder(Order model)
-        {
+        { 
+            model.State = OrderState.accepted;
             if (ModelState.IsValid)
             {
                 try

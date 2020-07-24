@@ -15,7 +15,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FashionSales.Controllers
 {
-    [Authorize(Roles = "Admin")]
+   // [Authorize(Roles = "Admin")]
     [Route("api/[controller]")]
     [ApiController]
     public class UsersController : ControllerBase
@@ -26,6 +26,8 @@ namespace FashionSales.Controllers
 
         private readonly DataContext _context;
 
+
+
         public UsersController(IUsersRepository repo, IMapper mapper, UserManager<User> userManager, DataContext context)
         {
             _mapper = mapper;
@@ -34,6 +36,11 @@ namespace FashionSales.Controllers
             _context = context;
 
         }
+
+
+
+
+
 
 
         [HttpGet("{id}", Name = "GetUser")]
@@ -48,30 +55,51 @@ namespace FashionSales.Controllers
             return Ok(userToReturn);
         }
 
-        [HttpGet("{id}", Name = "Getprovider")]
-        public async Task<IActionResult> Getprovider(int id)
-        {
 
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
 
-            var userToReturn = _mapper.Map<UserForDetailedDto>(user);
 
-            return Ok(userToReturn);
-        }
 
-        [HttpGet("byRole/{role}")]
-        // [Authorize(Roles = "Admin")]
+
+
+
+        //[HttpGet("{id}", Name = "Getprovider")]
+        //public async Task<IActionResult> Getprovider(int id)
+        //{
+
+        //    var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
+
+        //    var userToReturn = _mapper.Map<UserForDetailedDto>(user);
+
+        //    return Ok(userToReturn);
+        //}
+
+
+
+
+
+
+
+
+
+
+
+       // [HttpGet("GetUsers")]
+        //[HttpGet, Route("GetUsers/{role=role}")]
+        [HttpGet("GetUsers")]
+   //     [Authorize(Roles = "Admin provider")]
         public async Task<IActionResult> GetUsers(string role)
         {
             var users = await _userManager.GetUsersInRoleAsync(role);
-
-
             return Ok(users);
-
         }
 
+
+
+
+
+
         [HttpDelete("delete/{username}")]
-        // [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(string username)
         {
             if (username == null)

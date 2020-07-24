@@ -22,6 +22,8 @@ namespace FashionSales.Data
         {
             try
             {
+                int lastorderId = _context.Orders.Where(x=>x.CustomerId==3).Max(item => item.Id);
+                OrderProduct.OrderId = lastorderId;
                 await _context.OrderProducts.AddAsync(OrderProduct);
                 await _context.SaveChangesAsync();
                 return true;

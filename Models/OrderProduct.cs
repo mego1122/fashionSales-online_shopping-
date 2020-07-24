@@ -20,6 +20,8 @@ namespace FashionSales.Models
 
         public int Quantity { get; set; }
 
+        
+
 
     }
 }
