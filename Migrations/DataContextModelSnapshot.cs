@@ -269,8 +269,8 @@ namespace FashionSales.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "9abd3b8c-4878-414f-bc16-775e5e90914f",
-                            ConcurrencyStamp = "b4969d83-f499-496c-bd93-c5a253414a2c",
+                            Id = "9df4e05b-a9b8-4d34-afef-b320f6b168c9",
+                            ConcurrencyStamp = "638639c1-c609-41da-8a51-b85fedfb066d",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });

@@ -15,7 +15,7 @@ namespace FashionSales.Data
         private readonly DataContext _context;
         public OrdersRepository(DataContext context)
         {
-            _context = context;
+             _context = context;
         }
 
         public async Task<bool> Add(Order Order)
